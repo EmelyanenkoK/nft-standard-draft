@@ -1,9 +1,9 @@
 # NFT Standard
 ## State
- **Draft** to not be used in production
+ **Draft** to not be used in production. Example collection can be seen [https://emelyanenkok.github.io/nft-standard-draft/](here).
 
 ## Acknowledgments
-Standard is greatly based on TonWhales (ton-nft)[https://github.com/tonwhales/ton-nft] code. Thanks @Naltox, @ex3ndr for fruitful discussions.
+Standard is greatly based on TonWhales [https://github.com/tonwhales/ton-nft](ton-nft) code. Thanks @Naltox, @ex3ndr for fruitful discussions.
 
 ## Architecture
 ### NFT
@@ -32,9 +32,9 @@ Minimal balance of NFT is 0.05 TON, this limit may be increased for NFT storing 
 - `get_symbol` (optional) returns `slice symbol`, containing string with symbol of the token.
 - `uri` (optional) returns `slice uri`, containing string with uri of the token.
 
-Minimal balance of NFT is 1 TON, this limit may be increased for NFT storing huge content data, but should not be lowered.
 ### Collection
 Collection contract is special wallet-type contract with ability to deploy NFTs. Addresses of NFT are calculatbale by collection and only collection can initialise NFT with content, ownership and other information.
+Minimal balance of Collection is 1 TON, this limit may be increased for NFT storing huge content data, but should not be lowered.
 
 #### Get-methods
 - `get_nft_address_by_index` and `get_std_nft_address_by_index` return address of the token with given index.

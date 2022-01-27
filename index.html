@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="styles.css" />
     <script
       type="text/javascript"
-      src="https://wallet.ton.org/libs/tonweb-0.0.26.js"
+      src="./tonweb-0.0.27.js"
     ></script>
     <script type="text/javascript" src="nft.js"></script>
   </head>
@@ -31,8 +31,6 @@
         address: "kQBbB9BgeMuGpdIjlD2Wl1mexU4zUPx-lhnT0KKndSugroDO",
       });
       const renderCollectionItem = async (i) => {
-        console.log("Processing ", i);
-        // TODO BUG in toncenter
         let nft_address = await collection.methods.get_std_nft_address_by_index(i).call();
         const nft = new NFT(prv, { address: nft_address });
 
@@ -70,8 +68,13 @@
             collectionElement.innerHTML + `<div class="collection-item" data-key="${i}"><a /><div>`;
         }
 
+        let promisses = [];
         for (let i = 0; i < num; i++) {
-          renderCollectionItem(i);
+          promisses.push(renderCollectionItem(i));
+          if (promisses.length > 8) {
+            await Promise.all(promisses);
+            promisses = [];
+          }
         }
       };
       showCollection();
